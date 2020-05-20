@@ -1,0 +1,62 @@
+@import "../Styles/variables";
+
+.profile-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  background: $base-color;
+
+  .profile-image-container {
+    width: 16rem;
+    height: 16rem;
+
+    .profile-image {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+    }
+  }
+
+  .profile-info-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: $font-RobotoSlab;
+    font-size: 2rem;
+    color: white;
+
+    .profile-info {
+      width: 100%;
+      text-align: center;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+    }
+
+    .profile-logout {
+      margin-top: 2rem;
+      .profile-logout-button {
+        font-family: $font-RobotoSlab;
+        color: white;
+        border: 0.1rem solid white;
+        background: $base-color;
+        border-radius: 4rem;
+        width: 10rem;
+        height: 4rem;
+      }
+    }
+  }
+  .profile-top-container {
+    font-family: $font-RobotoSlab;
+    color: white;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+  }
+}

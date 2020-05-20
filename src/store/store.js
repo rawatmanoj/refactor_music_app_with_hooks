@@ -4,6 +4,10 @@ import Reducer from "./reducers";
 const initialState = {
   posts: [],
   error: null,
+  user: null,
+  followedArtists: null,
+  topArtists: null,
+  topTracks: null,
 };
 
 const Store = ({ children }) => {

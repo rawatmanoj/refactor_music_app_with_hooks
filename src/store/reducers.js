@@ -5,16 +5,32 @@ const Reducer = (state, action) => {
         ...state,
         posts: action.payload,
       };
-    case "ADD_POST":
+    case "TOP_TRACKS":
       return {
         ...state,
-        posts: state.posts.concat(action.payload),
+        topTracks: action.payload,
       };
-    case "REMOVE_POST":
+    case "USER":
       return {
         ...state,
-        posts: state.posts.filter((post) => post.id !== action.payload),
+        user: action.payload,
       };
+    case "USER_PLAYLIST":
+      return {
+        ...state,
+        userPlaylists: action.payload,
+      };
+    case "FOLLOWED_ARTISTS":
+      return {
+        ...state,
+        followedArtists: action.payload,
+      };
+    case "TOP_ARTISTS":
+      return {
+        ...state,
+        topArtists: action.payload,
+      };
+
     case "SET_ERROR":
       return {
         ...state,
