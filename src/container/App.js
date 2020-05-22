@@ -1,11 +1,19 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import Home from "../Components/Home/Home";
-import { token } from "../utils/utils";
+import { token } from "../spotify/spotify";
 import Login from "../Components/Login/login";
+import { Context } from "../store/store";
 
 const App = () => {
-  console.log(token);
-  return <div className="app-container"> {token ? <Home /> : <Login />} </div>;
+  const [state, dispatch] = useContext(Context);
+
+  useEffect(() => {
+    dispatch({ type: "TOKEN", payload: token });
+  }, []);
+
+  return (
+    <div className="app-container"> {state.token ? <Home /> : <Login />} </div>
+  );
 };
 
 export default App;

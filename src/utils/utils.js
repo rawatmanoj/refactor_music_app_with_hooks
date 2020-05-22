@@ -1,4 +1,4 @@
-function getHashParams() {
+export function getHashParams() {
   var hashParams = {};
   var e,
     r = /([^&;=]+)=?([^&;]*)/g,
@@ -10,6 +10,3 @@ function getHashParams() {
   }
   return hashParams;
 }
-
-const params = getHashParams();
-export const token = params.access_token;

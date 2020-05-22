@@ -1,9 +1,9 @@
 const Reducer = (state, action) => {
   switch (action.type) {
-    case "SET_POSTS":
+    case "TOKEN":
       return {
         ...state,
-        posts: action.payload,
+        token: action.payload,
       };
     case "TOP_TRACKS":
       return {
@@ -25,10 +25,35 @@ const Reducer = (state, action) => {
         ...state,
         followedArtists: action.payload,
       };
-    case "TOP_ARTISTS":
+    case "TOP_ARTISTS_SHORT":
       return {
         ...state,
-        topArtists: action.payload,
+        topArtistsShort: action.payload,
+      };
+    case "TOP_ARTISTS_MEDIUM":
+      return {
+        ...state,
+        topArtistsMedium: action.payload,
+      };
+    case "TOP_ARTISTS_LONG":
+      return {
+        ...state,
+        topArtistsLong: action.payload,
+      };
+    case "TOP_TRACKS_SHORT":
+      return {
+        ...state,
+        topTracksShort: action.payload,
+      };
+    case "TOP_TRACKS_MEDIUM":
+      return {
+        ...state,
+        topTracksMedium: action.payload,
+      };
+    case "TOP_TRACKS_LONG":
+      return {
+        ...state,
+        topTracksLong: action.payload,
       };
 
     case "SET_ERROR":
