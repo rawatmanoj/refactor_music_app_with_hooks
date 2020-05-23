@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import "./TopArtists.scss";
 import { token } from "../../spotify/spotify";
+import { Button } from "react-bootstrap";
 import axios from "axios";
 import Spotify from "spotify-web-api-js";
 
@@ -12,56 +13,66 @@ const TopArtists = () => {
 
   const [state, dispatch] = useContext(Context);
 
-  const headers = {
-    Authorization: `Bearer ${token}`,
-    "Content-Type": "application/json",
+  useEffect(() => {
+    fetchTopArtists("long_term");
+  }, []);
+
+  const fetchTopArtists = async (range) => {
+    // console.log(range);
+    const res = await spotifyWebApi.getMyTopArtists({
+      time_range: `${range}`,
+    });
+    dispatch({ type: "RANGE", payload: range });
+    dispatch({ type: "TOP_ARTISTS", payload: res });
   };
 
-  useEffect(() => {
-    const fetchMyTopArtistsShort = async () => {
-      const res = await axios.get(
-        "https://api.spotify.com/v1/me/top/artists?limit=50&time_range=short_term",
-        {
-          headers,
-        }
-      );
+  const handleClick = (range) => {
+    fetchTopArtists(range);
+  };
 
-      console.log(res);
-      dispatch({ type: "TOP_ARTISTS_SHORT", payload: res.data });
-    };
-
-    const fetchMyTopArtistsMedium = async () => {
-      const res = await axios.get(
-        "https://api.spotify.com/v1/me/top/artists?limit=50&time_range=medium_term",
-        {
-          headers,
-        }
-      );
-
-      console.log(res);
-      dispatch({ type: "TOP_ARTISTS_MEDIUM", payload: res.data });
-    };
-
-    const fetchMyTopArtistsLong = async () => {
-      const res = await axios.get(
-        "https://api.spotify.com/v1/me/top/artists?limit=50&time_range=long_term",
-        { headers }
-      );
-      console.log(res);
-      dispatch({ type: "TOP_ARTISTS_LONG", payload: res.data });
-    };
-
-    fetchMyTopArtistsShort();
-    fetchMyTopArtistsMedium();
-    fetchMyTopArtistsLong();
-  }, []);
+  if (state.topArtists) {
+    console.log(state.topArtists);
+  }
 
   return (
     <div className="topartists-container">
-      <div>TopArtists</div>
-      {state.topArtistsLong ? (
-        <div className="topartists">
-          <div>manoj</div>
+      <div className="header">
+        <div className="header-topartists">
+          <h1>TopArtists</h1>
+        </div>
+        <div className="header-timer">
+          <button
+            onClick={() => handleClick("long_term")}
+            className="header-button"
+          >
+            All Time
+          </button>
+          <button
+            onClick={() => handleClick("medium_term")}
+            className="header-button"
+          >
+            Last 6 Months
+          </button>
+          <button
+            onClick={() => handleClick("short_term")}
+            className="header-button"
+          >
+            Last 4 Weeks
+          </button>
+        </div>
+      </div>
+      {state.topArtists ? (
+        <div className="topartist-lower">
+          <div className="topartist">
+            {state.topArtists.items.map((item) => {
+              return (
+                <div className="topartist-image-container">
+                  <img className="topartists-image" src={item.images[0].url} />
+                  <div className="topartists-name">{item.name}</div>
+                </div>
+              );
+            })}
+          </div>
         </div>
       ) : null}
     </div>

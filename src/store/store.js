@@ -2,13 +2,20 @@ import React, { createContext, useReducer } from "react";
 import Reducer from "./reducers";
 
 const initialState = {
-  posts: [],
   error: null,
   user: null,
   followedArtists: null,
   topArtists: null,
   topTracks: null,
   token: "",
+  userPlaylists: null,
+  range: "long_term",
+  topArtistsShort: null,
+  topArtistsMedium: null,
+  topArtistsLong: null,
+  topTracksShort: null,
+  topTracksMedium: null,
+  topTracksLong: null,
 };
 
 const Store = ({ children }) => {

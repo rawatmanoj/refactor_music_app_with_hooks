@@ -15,6 +15,11 @@ const Reducer = (state, action) => {
         ...state,
         user: action.payload,
       };
+    case "TOP_ARTISTS":
+      return {
+        ...state,
+        topArtists: action.payload,
+      };
     case "USER_PLAYLIST":
       return {
         ...state,
@@ -25,6 +30,12 @@ const Reducer = (state, action) => {
         ...state,
         followedArtists: action.payload,
       };
+    case "RANGE":
+      return {
+        ...state,
+        range: action.payload,
+      };
+
     case "TOP_ARTISTS_SHORT":
       return {
         ...state,
