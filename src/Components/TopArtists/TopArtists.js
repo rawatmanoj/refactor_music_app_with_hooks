@@ -1,8 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import "./TopArtists.scss";
 import { token } from "../../spotify/spotify";
-import { Button } from "react-bootstrap";
-import axios from "axios";
 import Spotify from "spotify-web-api-js";
 
 import { Context } from "../../store/store";

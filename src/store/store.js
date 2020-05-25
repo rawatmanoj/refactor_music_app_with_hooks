@@ -10,12 +10,7 @@ const initialState = {
   token: "",
   userPlaylists: null,
   range: "long_term",
-  topArtistsShort: null,
-  topArtistsMedium: null,
-  topArtistsLong: null,
-  topTracksShort: null,
-  topTracksMedium: null,
-  topTracksLong: null,
+  recent: null,
 };
 
 const Store = ({ children }) => {

@@ -5,6 +5,11 @@ const Reducer = (state, action) => {
         ...state,
         token: action.payload,
       };
+    case "RECENT":
+      return {
+        ...state,
+        recent: action.payload,
+      };
     case "TOP_TRACKS":
       return {
         ...state,
@@ -34,37 +39,6 @@ const Reducer = (state, action) => {
       return {
         ...state,
         range: action.payload,
-      };
-
-    case "TOP_ARTISTS_SHORT":
-      return {
-        ...state,
-        topArtistsShort: action.payload,
-      };
-    case "TOP_ARTISTS_MEDIUM":
-      return {
-        ...state,
-        topArtistsMedium: action.payload,
-      };
-    case "TOP_ARTISTS_LONG":
-      return {
-        ...state,
-        topArtistsLong: action.payload,
-      };
-    case "TOP_TRACKS_SHORT":
-      return {
-        ...state,
-        topTracksShort: action.payload,
-      };
-    case "TOP_TRACKS_MEDIUM":
-      return {
-        ...state,
-        topTracksMedium: action.payload,
-      };
-    case "TOP_TRACKS_LONG":
-      return {
-        ...state,
-        topTracksLong: action.payload,
       };
 
     case "SET_ERROR":
