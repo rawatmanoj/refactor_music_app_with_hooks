@@ -27,7 +27,7 @@ const TopPlaylists = () => {
 
   return (
     <div className="playlist-container">
-      <div>
+      <div className="header-playlists">
         <h1>TopPlaylists</h1>
       </div>
       {state.userPlaylists ? (
@@ -38,6 +38,9 @@ const TopPlaylists = () => {
                 <div className="playlist-image-container">
                   <img className="playlist-image" src={item.images[0].url} />
                   <div className="playlist-name">{item.name}</div>
+                  <div className="playlist-total-tracks">
+                    {item.tracks.total}tracks
+                  </div>
                 </div>
               );
             })}

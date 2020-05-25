@@ -5,6 +5,8 @@ import TopArtists from "../TopArtists/TopArtists";
 import TopTracks from "../TopTracks/TopTracks";
 import Recent from "../Recent/Recent";
 import Playlists from "../Playlists/Playlists";
+import Artist from "../Artist/Artist";
+import Track from "../Track/Track";
 
 import Profile from "../Profile/Profile";
 import "./Home.scss";
@@ -22,6 +24,8 @@ const Home = () => {
           <Route path="/tracks" component={TopTracks} exact />
           <Route path="/recent" component={Recent} exact />
           <Route path="/playlists" component={Playlists} exact />
+          <Route path="artist/:artistId" component={Artist} exact />
+          <Route path="track/:trackId" component={Track} exact />
         </Switch>
       </BrowserRouter>
     </div>
