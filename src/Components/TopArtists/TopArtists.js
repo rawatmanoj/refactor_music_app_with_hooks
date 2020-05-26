@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from "react";
 import "./TopArtists.scss";
 import { token } from "../../spotify/spotify";
 import Spotify from "spotify-web-api-js";
+import { Link } from "react-router-dom";
 
 import { Context } from "../../store/store";
 const spotifyWebApi = new Spotify();
@@ -41,19 +42,28 @@ const TopArtists = () => {
         <div className="header-timer">
           <button
             onClick={() => handleClick("long_term")}
-            className="header-button"
+            className={
+              "header-button " +
+              (state.range === "long_term" ? "header-button-active" : "")
+            }
           >
             All Time
           </button>
           <button
             onClick={() => handleClick("medium_term")}
-            className="header-button"
+            className={
+              "header-button " +
+              (state.range === "medium_term" ? "header-button-active" : "")
+            }
           >
             Last 6 Months
           </button>
           <button
             onClick={() => handleClick("short_term")}
-            className="header-button"
+            className={
+              "header-button " +
+              (state.range === "short_term" ? "header-button-active" : "")
+            }
           >
             Last 4 Weeks
           </button>
@@ -64,8 +74,13 @@ const TopArtists = () => {
           <div className="topartist">
             {state.topArtists.items.map((item) => {
               return (
-                <div className="topartist-image-container">
-                  <img className="topartists-image" src={item.images[0].url} />
+                <div key={item.id} className="topartist-image-container">
+                  <Link to={{ pathname: `/artist/${item.id}` }}>
+                    <img
+                      className="topartists-image"
+                      src={item.images[0].url}
+                    />
+                  </Link>
                   <div className="topartists-name">{item.name}</div>
                 </div>
               );

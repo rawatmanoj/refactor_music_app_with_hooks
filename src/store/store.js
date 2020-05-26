@@ -11,6 +11,9 @@ const initialState = {
   userPlaylists: null,
   range: "long_term",
   recent: null,
+  Artist: null,
+  Track: null,
+  isFollowingArtist: null,
 };
 
 const Store = ({ children }) => {

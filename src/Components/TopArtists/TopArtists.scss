@@ -38,6 +38,9 @@
         color: white;
         transition: all 0.4s ease;
       }
+      .header-button-active {
+        border-bottom: 1.5px solid $standout-color;
+      }
     }
   }
 
