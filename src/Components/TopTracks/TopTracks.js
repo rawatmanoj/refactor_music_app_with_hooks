@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from "react";
 import "./TopTracks.scss";
 import { token } from "../../spotify/spotify";
 import Spotify from "spotify-web-api-js";
+import { Link } from "react-router-dom";
 
 import { Context } from "../../store/store";
 const spotifyWebApi = new Spotify();
@@ -80,10 +81,12 @@ const TopTracks = () => {
               return (
                 <div className="toptracks-div-container">
                   <div className="toptracks-image-container">
-                    <img
-                      className="toptracks-image"
-                      src={item.album.images[0].url}
-                    />
+                    <Link to={{ pathname: `/track/${item.id}` }}>
+                      <img
+                        className="toptracks-image"
+                        src={item.album.images[0].url}
+                      />
+                    </Link>
                   </div>
                   <div className="toptracks-info">
                     <div className="toptracks-name">{item.name}</div>

@@ -10,6 +10,16 @@ const Reducer = (state, action) => {
         ...state,
         isFollowingArtist: action.payload,
       };
+    case "AUDIOANALYSIS":
+      return {
+        ...state,
+        audioAnalysis: action.payload,
+      };
+    case "AUDIOFEATURES":
+      return {
+        ...state,
+        audioFeatures: action.payload,
+      };
     case "ARTIST":
       return {
         ...state,

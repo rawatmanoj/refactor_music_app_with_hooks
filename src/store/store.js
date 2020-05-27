@@ -14,6 +14,8 @@ const initialState = {
   Artist: null,
   Track: null,
   isFollowingArtist: null,
+  audioAnalysis: null,
+  audioFeatures: null,
 };
 
 const Store = ({ children }) => {

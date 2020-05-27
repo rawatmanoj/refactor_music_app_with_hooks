@@ -25,7 +25,7 @@ const Home = () => {
           <Route path="/recent" component={Recent} exact />
           <Route path="/playlists" component={Playlists} exact />
           <Route path="/artist/:artistId" component={Artist} exact />
-          <Route path="track/:trackId" component={Track} exact />
+          <Route path="/track/:trackId" component={Track} exact />
         </Switch>
       </BrowserRouter>
     </div>
