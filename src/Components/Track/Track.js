@@ -24,8 +24,8 @@ const Track = () => {
   async function fetchAudioFeatures() {
     const res = await spotifyWebApi.getAudioAnalysisForTrack(params.trackId);
     const res2 = await spotifyWebApi.getAudioFeaturesForTrack(params.trackId);
-    console.log(res);
-    console.log(res2);
+    //  console.log(res);
+    //console.log(res2);
     dispatch({ type: "AUDIOANALYSIS", payload: res });
     dispatch({ type: "AUDIOFEATURES", payload: res2 });
   }

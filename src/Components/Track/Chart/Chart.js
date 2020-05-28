@@ -6,12 +6,53 @@ import "./Chart.scss";
 
 const Chart = () => {
   const [state, dispatch] = useContext(Context);
-  console.log(state.audioFeatures);
+
+  function prepareChartData(dataset) {
+    // console.log(dataset);
+    // const chartdata = Object.values(state.audioFeatures);
+    if (state.audioFeatures) {
+      const {
+        acousticness,
+        danceability,
+        energy,
+        instrumentalness,
+        liveness,
+        speechiness,
+        valence,
+      } = state.audioFeatures;
+
+      const chartdata = Object.values({
+        acousticness,
+        danceability,
+        energy,
+        instrumentalness,
+        liveness,
+        speechiness,
+        valence,
+      });
+      return chartdata;
+    }
+  }
+
+  const chartData = prepareChartData(state.audioFeatures);
+  console.log(chartData);
+  //   const {
+  //     acousticness,
+  //     danceability,
+  //     energy,
+  //     instrumentalness,
+  //     liveness,
+  //     speechiness,
+  //     valence,
+  //   } = state.audioFeatures;
+
+  // console.log(acousticness);
 
   const data = {
     labels: [
       "acousticness",
       "danceability",
+      "energy",
       "instrumentalness",
       "liveness",
       "speechiness",
@@ -19,14 +60,32 @@ const Chart = () => {
     ],
     datasets: [
       {
-        label: "My First dataset",
+        scales: { xAxes: [{ display: false }], yAxes: [{ display: false }] },
+
         fillColor: "white",
-        backgroundColor: "rgba(255,99,132,0.2)",
-        borderColor: "rgba(255,99,132,1)",
+        backgroundColor: [
+          "rgba(255, 99, 132, 0.3)",
+          "rgba(255, 159, 64, 0.3)",
+          "rgba(255, 206, 86, 0.3)",
+          "rgba(75, 192, 192, 0.3)",
+          "rgba(54, 162, 235, 0.3)",
+          "rgba(104, 132, 245, 0.3)",
+          "rgba(153, 102, 255, 0.3)",
+        ],
+        borderColor: [
+          "rgba(255,99,132,1)",
+          "rgba(255, 159, 64, 1)",
+          "rgba(255, 206, 86, 1)",
+          "rgba(75, 192, 192, 1)",
+          "rgba(54, 162, 235, 1)",
+          "rgba(104, 132, 245, 1)",
+          "rgba(153, 102, 255, 1)",
+        ],
+        gridLines: { color: "white" },
         borderWidth: 1,
         hoverBackgroundColor: "rgba(255,99,132,0.4)",
         hoverBorderColor: "rgba(255,99,132,1)",
-        data: [65, 59, 80, 81, 56, 55, 40],
+        data: chartData,
       },
     ],
   };
@@ -34,14 +93,16 @@ const Chart = () => {
   return (
     <div className="chart-container">
       <div>
-        <Bar
-          data={data}
-          width={1000}
-          height={500}
-          options={{
-            maintainAspectRatio: false,
-          }}
-        />
+        {state.audioFeatures ? (
+          <Bar
+            data={data}
+            width={700}
+            height={600}
+            options={{
+              maintainAspectRatio: false,
+            }}
+          />
+        ) : null}
       </div>
     </div>
   );
