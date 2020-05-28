@@ -79,28 +79,35 @@ const TopTracks = () => {
           <div className="toptracks">
             {state.topTracks.items.map((item) => {
               return (
-                <div className="toptracks-div-container">
-                  <div className="toptracks-image-container">
-                    <Link to={{ pathname: `/track/${item.id}` }}>
+                <Link
+                  style={{
+                    textDecoration: "inherit",
+                    color: "inherit",
+                    margin: "2rem",
+                  }}
+                  to={{ pathname: `/track/${item.id}` }}
+                >
+                  <div className="toptracks-div-container">
+                    <div className="toptracks-image-container">
                       <img
                         className="toptracks-image"
                         src={item.album.images[0].url}
                       />
-                    </Link>
-                  </div>
-                  <div className="toptracks-info">
-                    <div className="toptracks-name">{item.name}</div>
-                    <div className="toptracks-artists-container">
-                      {item.artists.map((artist) => (
-                        <div>{artist.name} | </div>
-                      ))}
-                      <div>{item.album.name}</div>
+                    </div>
+                    <div className="toptracks-info">
+                      <div className="toptracks-name">{item.name}</div>
+                      <div className="toptracks-artists-container">
+                        {item.artists.map((artist) => (
+                          <div>{artist.name} | </div>
+                        ))}
+                        <div>{item.album.name}</div>
+                      </div>
+                    </div>
+                    <div className="toptracks-time">
+                      {(item.duration_ms / (1000 * 60)).toFixed(2)}
                     </div>
                   </div>
-                  <div className="toptracks-time">
-                    {(item.duration_ms / (1000 * 60)).toFixed(2)}
-                  </div>
-                </div>
+                </Link>
               );
             })}
           </div>

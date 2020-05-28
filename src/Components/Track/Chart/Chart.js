@@ -58,6 +58,14 @@ const Chart = () => {
       "speechiness",
       "valence",
     ],
+    title: {
+      display: true,
+      text: `Audio Features`,
+      fontSize: 18,
+      // fontFamily: `${fonts.primary}`,
+      fontColor: "#ffffff",
+      padding: 30,
+    },
     datasets: [
       {
         scales: { xAxes: [{ display: false }], yAxes: [{ display: false }] },
