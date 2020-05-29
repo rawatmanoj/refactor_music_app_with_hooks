@@ -5,6 +5,16 @@ const Reducer = (state, action) => {
         ...state,
         token: action.payload,
       };
+    case "PLAYLIST_TRACKS":
+      return {
+        ...state,
+        playlistTracks: action.payload,
+      };
+    case "PLAYLIST":
+      return {
+        ...state,
+        playlist: action.payload,
+      };
     case "IS_FOLLOWING_ARTIST":
       return {
         ...state,

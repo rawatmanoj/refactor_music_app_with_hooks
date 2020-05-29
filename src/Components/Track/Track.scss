@@ -68,9 +68,16 @@
       }
     }
 
+    .heading-audio-features {
+      font-size: 2rem;
+      font-weight: 600;
+      margin-top: 10rem;
+      margin-bottom: 3rem;
+    }
+
     .track-middle-conatiner {
       width: 100%;
-      margin-top: 10rem;
+
       flex-wrap: wrap;
       display: flex;
       justify-content: center;
@@ -93,7 +100,12 @@
         }
       }
     }
-
+    .chart-audio-features {
+      font-size: 2rem;
+      font-weight: 600;
+      margin-top: 5rem;
+      color: #9b9b8f;
+    }
     .track-lower-conatiner {
       width: 100%;
       margin-top: 10rem;

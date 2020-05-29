@@ -3,6 +3,7 @@ import "./Playlists.scss";
 import { token } from "../../spotify/spotify";
 import Spotify from "spotify-web-api-js";
 import { Context } from "../../store/store";
+import { Link } from "react-router-dom";
 
 const TopPlaylists = () => {
   const spotifyWebApi = new Spotify();
@@ -35,13 +36,22 @@ const TopPlaylists = () => {
           <div className="playlist">
             {state.userPlaylists.items.map((item) => {
               return (
-                <div className="playlist-image-container">
-                  <img className="playlist-image" src={item.images[0].url} />
-                  <div className="playlist-name">{item.name}</div>
-                  <div className="playlist-total-tracks">
-                    {item.tracks.total}tracks
+                <Link
+                  style={{
+                    textDecoration: "inherit",
+                    color: "inherit",
+                    margin: "2rem",
+                  }}
+                  to={{ pathname: `/playlist/${item.id}` }}
+                >
+                  <div className="playlist-image-container">
+                    <img className="playlist-image" src={item.images[0].url} />
+                    <div className="playlist-name">{item.name}</div>
+                    <div className="playlist-total-tracks">
+                      {item.tracks.total}tracks
+                    </div>
                   </div>
-                </div>
+                </Link>
               );
             })}
           </div>

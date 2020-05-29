@@ -34,7 +34,7 @@ const Track = () => {
     fetchTrack();
     fetchAudioFeatures();
   }, []);
-
+  console.log(state);
   return (
     <div className="track-container">
       {state.track ? (
@@ -60,6 +60,7 @@ const Track = () => {
               <div className="track-album-name">{state.track.album.name}</div>
             </div>
           </div>
+          <div className="heading-audio-features"> Audio Features</div>
           {state.audioAnalysis && state.audioFeatures ? (
             <div className="track-middle-conatiner">
               <div className="track-middle-box track-duration">
@@ -110,6 +111,9 @@ const Track = () => {
 
           <div className="track-lower-conatiner">
             <Chart />
+          </div>
+          <div className="chart-audio-features">
+            Full Description of Audio Features
           </div>
         </div>
       ) : null}
