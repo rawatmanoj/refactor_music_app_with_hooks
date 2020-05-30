@@ -8,6 +8,7 @@ import Playlists from "../Playlists/Playlists";
 import Artist from "../Artist/Artist";
 import Track from "../Track/Track";
 import Playlist from "../Playlist/Playlist";
+import Recommendations from "../Recommendations/Recommendations";
 
 import Profile from "../Profile/Profile";
 import "./Home.scss";
@@ -28,6 +29,11 @@ const Home = () => {
           <Route path="/artist/:artistId" component={Artist} exact />
           <Route path="/track/:trackId" component={Track} exact />
           <Route path="/playlist/:playlistId" component={Playlist} exact />
+          <Route
+            path="/Recommendations/:playlistId"
+            component={Recommendations}
+            exact
+          />
         </Switch>
       </BrowserRouter>
     </div>

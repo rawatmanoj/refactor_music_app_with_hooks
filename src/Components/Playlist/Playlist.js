@@ -48,6 +48,16 @@ const Playlist = () => {
             <div className="innerplaylist-left-total-tracks">
               {state.playlist.tracks.total} tracks
             </div>
+            <Link
+              style={{
+                textDecoration: "inherit",
+                color: "inherit",
+                margin: "2rem",
+              }}
+              to={{ pathname: `/Recommendations/${params.playlistId}` }}
+            >
+              <div>GET RECOMMENDATIONS</div>
+            </Link>
           </div>
         ) : null}
         <div className="innerplaylist-right-conatiner">
@@ -62,7 +72,7 @@ const Playlist = () => {
                         color: "inherit",
                         margin: "2rem",
                       }}
-                      to={{ pathname: `/track/${item.id}` }}
+                      to={{ pathname: `/track/${item.track.id}` }}
                     >
                       <div className="innerplaylist-right-div-container">
                         <div className="innerplaylist-right-image-container">

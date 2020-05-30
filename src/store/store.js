@@ -18,6 +18,8 @@ const initialState = {
   audioFeatures: null,
   playlistTracks: null,
   playlist: null,
+  recommendations: null,
+  followedArtists: null,
 };
 
 const Store = ({ children }) => {
