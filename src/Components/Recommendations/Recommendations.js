@@ -1,42 +1,10 @@
 import React, { useContext, useEffect } from "react";
 import "./Recommendations.scss";
-import { token } from "../../spotify/spotify";
-import Spotify from "spotify-web-api-js";
-import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 import { Context } from "../../store/store";
-const spotifyWebApi = new Spotify();
 const Recommendations = () => {
-  spotifyWebApi.setAccessToken(token);
-  const params = new useParams();
-  const [state, dispatch] = useContext(Context);
-
-  async function fetchRecommendations() {
-    const res = await spotifyWebApi.getPlaylistTracks(params.playlistId);
-    console.log(res);
-
-    const recTracks = res.items
-      .map((item) => {
-        return item.track.id;
-      })
-      .slice(0, 5)
-      .join(",");
-
-    console.log(recTracks);
-
-    const res2 = await spotifyWebApi.getRecommendations({
-      seed_tracks: recTracks,
-    });
-
-    console.log(res2);
-
-    dispatch({ type: "RECOMMENDATIONS", payload: res2 });
-  }
-
-  useEffect(() => {
-    fetchRecommendations();
-  }, []);
+  const [state] = useContext(Context);
 
   return (
     <div className="recommendations-conatiner">

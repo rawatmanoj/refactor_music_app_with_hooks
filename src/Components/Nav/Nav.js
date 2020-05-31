@@ -15,21 +15,36 @@ const Nav = () => {
     <div className="nav-container">
       <div className="navbar">
         <div className="nav-icons-container">
-          <Link to={{ pathname: `/` }}>
-            <FontAwesomeIcon color="white" icon={faUser} />
-          </Link>
-          <Link to={{ pathname: `/artists` }}>
-            <FontAwesomeIcon color="white" icon={faMicrophone} />
-          </Link>
-          <Link to={{ pathname: `/tracks` }}>
-            <FontAwesomeIcon color="white" icon={faMusic} />
-          </Link>
-          <Link to={{ pathname: `/recent` }}>
-            <FontAwesomeIcon color="white" icon={faHistory} />
-          </Link>
-          <Link to={{ pathname: `/playlists` }}>
-            <FontAwesomeIcon color="white" icon={faListUl} />
-          </Link>
+          <div className="nav-button-container">
+            <Link className="nav-button" to={{ pathname: `/` }}>
+              <FontAwesomeIcon color="white" icon={faUser} />
+            </Link>
+            <div className="nav-name"> Profile</div>
+          </div>
+          <div className="nav-button-container">
+            <Link className="nav-button" to={{ pathname: `/artists` }}>
+              <FontAwesomeIcon color="white" icon={faMicrophone} />
+            </Link>
+            <div className="nav-name"> Artists</div>
+          </div>
+          <div className="nav-button-container">
+            <Link className="nav-button" to={{ pathname: `/tracks` }}>
+              <FontAwesomeIcon color="white" icon={faMusic} />
+            </Link>
+            <div className="nav-name"> Tracks</div>
+          </div>
+          <div className="nav-button-container">
+            <Link className="nav-button" to={{ pathname: `/recent` }}>
+              <FontAwesomeIcon color="white" icon={faHistory} />
+            </Link>
+            <div className="nav-name"> Recent</div>
+          </div>
+          <div className="nav-button-container">
+            <Link className="nav-button" to={{ pathname: `/playlists` }}>
+              <FontAwesomeIcon color="white" icon={faListUl} />
+            </Link>
+            <div className="nav-name"> Playlists</div>
+          </div>
         </div>
       </div>
     </div>

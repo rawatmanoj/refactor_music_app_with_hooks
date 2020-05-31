@@ -1,41 +1,17 @@
 import React, { useContext, useEffect } from "react";
-import { Bar } from "react-chartjs-2";
+
 import { Context } from "../../../store/store";
+import { HorizontalBar } from "react-chartjs-2";
+import "./ChartPlaylist.scss";
+const ChartPlaylist = () => {
+  const [state, dispatch] = useContext(Context);
+  console.log(state.playlistChart);
 
-import "./Chart.scss";
-
-const Chart = () => {
-  const [state] = useContext(Context);
-
-  function prepareChartData(dataset) {
-    // console.log(dataset);
-    // const chartdata = Object.values(state.audioFeatures);
-    if (state.audioFeatures) {
-      const {
-        acousticness,
-        danceability,
-        energy,
-        instrumentalness,
-        liveness,
-        speechiness,
-        valence,
-      } = state.audioFeatures;
-
-      const chartdata = Object.values({
-        acousticness,
-        danceability,
-        energy,
-        instrumentalness,
-        liveness,
-        speechiness,
-        valence,
-      });
-      return chartdata;
-    }
-  }
-
-  const chartData = prepareChartData(state.audioFeatures);
-  console.log(chartData);
+  const options = {
+    legend: {
+      display: false,
+    },
+  };
 
   const data = {
     labels: [
@@ -57,7 +33,23 @@ const Chart = () => {
     },
     datasets: [
       {
-        scales: { xAxes: [{ display: false }], yAxes: [{ display: false }] },
+        scales: {
+          yAxes: [
+            {
+              gridLines: {
+                color: "white",
+              },
+            },
+          ],
+          xAxes: [
+            {
+              gridLines: {
+                color: "white",
+              },
+            },
+          ],
+        },
+        // scales: { xAxes: [{ display: false }], yAxes: [{ display: false }] },
         label: "stats",
         fillColor: "white",
         backgroundColor: [
@@ -82,19 +74,21 @@ const Chart = () => {
         borderWidth: 1,
         hoverBackgroundColor: "rgba(255,99,132,0.4)",
         hoverBorderColor: "rgba(255,99,132,1)",
-        data: chartData,
+        data: state.playlistChart,
       },
     ],
   };
 
   return (
-    <div className="chart-container">
+    <div className="chartPlaylist-container">
       <div>
-        {state.audioFeatures ? (
-          <Bar
+        {state.playlistChart ? (
+          <HorizontalBar
+            legend={false}
+            options={options}
             data={data}
-            width={700}
-            height={600}
+            width={400}
+            height={300}
             options={{
               maintainAspectRatio: false,
             }}
@@ -105,4 +99,4 @@ const Chart = () => {
   );
 };
 
-export default Chart;
+export default ChartPlaylist;

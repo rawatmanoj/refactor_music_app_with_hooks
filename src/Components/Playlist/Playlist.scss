@@ -10,7 +10,6 @@
   padding-bottom: 10rem;
 
   .innerplaylist {
-    width: 90%;
     margin-top: 10rem;
 
     margin-left: auto;
@@ -18,11 +17,32 @@
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-
+    width: 100%;
     .innerplaylist-left-container {
       display: flex;
       flex-direction: column;
       // justify-content: center;
+      align-items: center;
+      text-align: center;
+
+      .audio-features-heading {
+        margin-top: 3rem;
+        font-size: 1.8rem;
+        font-weight: 700;
+      }
+      .get-recommendations-button {
+        text-decoration: inherit;
+        // width: max-content;
+        font-family: $font-Roboto;
+        font-weight: 900;
+        font-size: 1.1rem;
+        letter-spacing: 0.18rem;
+        padding: 1rem;
+        background: $standout-color;
+        color: inherit;
+        margin: 2rem;
+        border-radius: 10rem;
+      }
 
       .innerplaylist-left-div-container {
         width: 30rem;

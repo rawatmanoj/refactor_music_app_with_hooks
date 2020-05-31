@@ -1,9 +1,19 @@
 const Reducer = (state, action) => {
   switch (action.type) {
+    case "LOADING":
+      return {
+        ...state,
+        isLoading: action.payload,
+      };
     case "TOKEN":
       return {
         ...state,
         token: action.payload,
+      };
+    case "PLAYLIST_CHART":
+      return {
+        ...state,
+        playlistChart: action.payload,
       };
     case "FOLLOWED_ARTISTS":
       return {

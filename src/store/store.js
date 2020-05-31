@@ -20,6 +20,8 @@ const initialState = {
   playlist: null,
   recommendations: null,
   followedArtists: null,
+  playlistChart: null,
+  isLoading: false,
 };
 
 const Store = ({ children }) => {
