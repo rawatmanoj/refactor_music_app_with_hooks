@@ -26,10 +26,8 @@ const Artist = () => {
   }
 
   async function fetchIsFollowing() {
-    dispatch({ type: "LOADING", payload: true });
     const res = await spotifyWebApi.isFollowingArtists([params.artistId]);
     dispatch({ type: "IS_FOLLOWING_ARTIST", payload: res });
-    dispatch({ type: "LOADING", payload: false });
   }
 
   useEffect(() => {

@@ -5,7 +5,7 @@ import { RadarSpinner } from "react-epic-spinners";
 const Spinner = () => {
   return (
     <div className="spinner-container">
-      <RadarSpinner className="spinner" size={100} color="#966BB4" />
+      <RadarSpinner className="spinner" size={100} color="#eb4e7a" />
     </div>
   );
 };

@@ -48,7 +48,9 @@ const TopPlaylists = () => {
                       style={{
                         textDecoration: "inherit",
                         color: "inherit",
-                        margin: "2rem",
+                        marginLeft: "2rem",
+                        marginRight: "2rem",
+                        marginBottom: "8rem",
                       }}
                       to={{ pathname: `/playlist/${item.id}` }}
                     >
@@ -59,7 +61,7 @@ const TopPlaylists = () => {
                         />
                         <div className="playlist-name">{item.name}</div>
                         <div className="playlist-total-tracks">
-                          {item.tracks.total}tracks
+                          {item.tracks.total} Tracks
                         </div>
                       </div>
                     </Link>

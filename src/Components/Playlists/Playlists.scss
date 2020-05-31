@@ -19,7 +19,7 @@
 
   .playlist-lower {
     margin-top: 5rem;
-    width: 90%;
+    width: 95%;
     margin-left: auto;
     margin-right: auto;
 
@@ -29,8 +29,8 @@
       flex-direction: row;
 
       .playlist-image-container {
-        width: 25rem;
-        height: 25rem;
+        width: 22rem;
+        height: 22rem;
         text-align: center;
 
         .playlist-image {
@@ -43,8 +43,10 @@
           font-family: $font-AlegreyaSans;
         }
         .playlist-total-tracks {
-          font-size: 1.5rem;
-          font-family: $font-AlegreyaSans;
+          font-size: 1.4rem;
+          color: #9b9b8f;
+          font-family: $font-Lato;
+          font-weight: 700;
         }
       }
     }
