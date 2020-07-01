@@ -28,10 +28,6 @@ const Recent = () => {
   }, []);
   //console.log(state);
 
-  if (state.recent) {
-    console.log(state.recent.items);
-  }
-
   return (
     <div className="recent-container">
       {state.isLoading ? (
@@ -47,7 +43,7 @@ const Recent = () => {
           {state.recent ? (
             <div className="recent-lower">
               <div className="recent">
-                {state.recent.items.map((item) => {
+                {state.recent.items.map((item, i) => {
                   return (
                     <Link
                       style={{
@@ -55,6 +51,7 @@ const Recent = () => {
                         color: "inherit",
                         margin: "2rem",
                       }}
+                      key={i}
                       to={{ pathname: `/track/${item.track.id}` }}
                     >
                       <div className="recent-div-container">
@@ -62,13 +59,14 @@ const Recent = () => {
                           <img
                             className="recent-image"
                             src={item.track.album.images[0].url}
+                            alt="recent_image"
                           />
                         </div>
                         <div className="recent-info">
                           <div className="recent-name">{item.track.name}</div>
                           <div className="recent-artists-container">
-                            {item.track.artists.map((artist) => (
-                              <div>{artist.name} | </div>
+                            {item.track.artists.map((artist, i) => (
+                              <div key={i}>{artist.name} | </div>
                             ))}
                             <div>{item.track.album.name}</div>
                           </div>

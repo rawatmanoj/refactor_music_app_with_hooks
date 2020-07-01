@@ -19,7 +19,6 @@ const initialState = {
   playlistTracks: null,
   playlist: null,
   recommendations: null,
-  followedArtists: null,
   playlistChart: null,
   isLoading: false,
 };

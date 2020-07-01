@@ -27,7 +27,7 @@ const TopPlaylists = () => {
     fetchPlaylists("long_term");
   }, []);
 
-  console.log(state.userPlaylists);
+  // console.log(state.userPlaylists);
 
   return (
     <div className="playlist-container">
@@ -42,9 +42,10 @@ const TopPlaylists = () => {
           {state.userPlaylists ? (
             <div className="playlist-lower">
               <div className="playlist">
-                {state.userPlaylists.items.map((item) => {
+                {state.userPlaylists.items.map((item, i) => {
                   return (
                     <Link
+                      key={i}
                       style={{
                         textDecoration: "inherit",
                         color: "inherit",

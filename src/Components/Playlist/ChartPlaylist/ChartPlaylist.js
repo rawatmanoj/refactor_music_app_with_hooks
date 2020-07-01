@@ -1,15 +1,16 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 
 import { Context } from "../../../store/store";
 import { HorizontalBar } from "react-chartjs-2";
 import "./ChartPlaylist.scss";
 const ChartPlaylist = () => {
-  const [state, dispatch] = useContext(Context);
-  console.log(state.playlistChart);
+  const [state] = useContext(Context);
+  // console.log(state.playlistChart);
 
   const options = {
     legend: {
       display: false,
+      maintainAspectRatio: false,
     },
   };
 
@@ -89,9 +90,6 @@ const ChartPlaylist = () => {
             data={data}
             width={400}
             height={300}
-            options={{
-              maintainAspectRatio: false,
-            }}
           />
         ) : null}
       </div>

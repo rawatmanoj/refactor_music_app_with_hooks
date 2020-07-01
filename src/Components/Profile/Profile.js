@@ -32,10 +32,11 @@ const Profile = () => {
   };
 
   const fetchFollowedArtists = async () => {
+    //
     dispatch({ type: "LOADING", payload: true });
+
     const res = await spotifyWebApi.getFollowedArtists();
 
-    console.log(res);
     dispatch({ type: "FOLLOWED_ARTISTS", payload: res });
     dispatch({ type: "LOADING", payload: false });
   };
@@ -43,6 +44,7 @@ const Profile = () => {
   useEffect(() => {
     fetchUser();
     fetchUserPlaylist();
+
     fetchFollowedArtists();
   }, []);
 
@@ -73,9 +75,11 @@ const Profile = () => {
                     <div className="profile-info-heading"> Followers</div>
                   </div>
                   <div className="profile-info-following">
-                    <div className="profile-info-total">
-                      {state.followedArtists.artists.total}
-                    </div>
+                    {state.followedArtists ? (
+                      <div className="profile-info-total">
+                        {state.followedArtists.artists.total}
+                      </div>
+                    ) : null}
 
                     <div className="profile-info-heading"> Following</div>
                   </div>

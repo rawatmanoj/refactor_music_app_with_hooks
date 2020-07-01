@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { Bar } from "react-chartjs-2";
 import { Context } from "../../../store/store";
 

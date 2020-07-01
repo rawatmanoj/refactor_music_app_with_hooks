@@ -32,10 +32,6 @@ const TopArtists = () => {
     fetchTopArtists(range);
   };
 
-  if (state.topArtists) {
-    console.log(state.topArtists);
-  }
-
   return (
     <div className="topartists-container">
       {state.isLoading ? (

@@ -36,7 +36,6 @@ const Artist = () => {
   }, []);
 
   const handleClick = async (status) => {
-    console.log("yes");
     if (status === "unfollow") {
       await spotifyWebApi.unfollowArtists([params.artistId]);
       fetchIsFollowing();

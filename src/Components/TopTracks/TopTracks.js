@@ -79,7 +79,7 @@ const TopTracks = () => {
           {state.topTracks ? (
             <div className="toptracks-lower">
               <div className="toptracks">
-                {state.topTracks.items.map((item) => {
+                {state.topTracks.items.map((item, i) => {
                   return (
                     <Link
                       style={{
@@ -87,6 +87,7 @@ const TopTracks = () => {
                         color: "inherit",
                         margin: "2rem",
                       }}
+                      key={i}
                       to={{ pathname: `/track/${item.id}` }}
                     >
                       <div className="toptracks-div-container">
@@ -94,13 +95,14 @@ const TopTracks = () => {
                           <img
                             className="toptracks-image"
                             src={item.album.images[0].url}
+                            alt="track"
                           />
                         </div>
                         <div className="toptracks-info">
                           <div className="toptracks-name">{item.name}</div>
                           <div className="toptracks-artists-container">
-                            {item.artists.map((artist) => (
-                              <div>{artist.name} | </div>
+                            {item.artists.map((artist, i) => (
+                              <div key={i}>{artist.name} | </div>
                             ))}
                             <div>{item.album.name}</div>
                           </div>

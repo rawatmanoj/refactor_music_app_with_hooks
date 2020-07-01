@@ -105,6 +105,7 @@ const Playlist = () => {
                   <img
                     className="innerplaylist-image"
                     src={state.playlist.images[0].url}
+                    alt="playlist"
                   />
                 </div>
                 <div className="innerplaylist-left-name">
@@ -130,7 +131,7 @@ const Playlist = () => {
               <div className="innerplaylist-right-lower">
                 {state.playlistTracks ? (
                   <div className="innerplaylist-right">
-                    {state.playlistTracks.items.map((item) => {
+                    {state.playlistTracks.items.map((item, i) => {
                       return (
                         <Link
                           style={{
@@ -138,6 +139,7 @@ const Playlist = () => {
                             color: "inherit",
                             margin: "2rem",
                           }}
+                          key={i}
                           to={{ pathname: `/track/${item.track.id}` }}
                         >
                           <div className="innerplaylist-right-div-container">
@@ -145,6 +147,7 @@ const Playlist = () => {
                               <img
                                 className="innerplaylist-right-image"
                                 src={item.track.album.images[0].url}
+                                alt="album"
                               />
                             </div>
                             <div className="innerplaylist-right-info">
@@ -152,8 +155,8 @@ const Playlist = () => {
                                 {item.track.name}
                               </div>
                               <div className="innerplaylist-right-artists-container">
-                                {item.track.artists.map((artist) => (
-                                  <div>{artist.name} | </div>
+                                {item.track.artists.map((artist, i) => (
+                                  <div key={i}>{artist.name} | </div>
                                 ))}
                                 <div>{item.track.album.name}</div>
                               </div>

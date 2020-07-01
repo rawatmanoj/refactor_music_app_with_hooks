@@ -1,5 +1,4 @@
 import React from "react";
-import Store from "../../store/store";
 import Nav from "../Nav/Nav";
 import TopArtists from "../TopArtists/TopArtists";
 import TopTracks from "../TopTracks/TopTracks";
@@ -12,7 +11,7 @@ import Recommendations from "../Recommendations/Recommendations";
 
 import Profile from "../Profile/Profile";
 import "./Home.scss";
-import { BrowserRouter, HashRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 const Home = () => {
   return (
