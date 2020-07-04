@@ -85,11 +85,7 @@ const Reducer = (state, action) => {
         ...state,
         userPlaylists: action.payload,
       };
-    case "FOLLOWED_ARTISTS":
-      return {
-        ...state,
-        followedArtists: action.payload,
-      };
+
     case "RANGE":
       return {
         ...state,

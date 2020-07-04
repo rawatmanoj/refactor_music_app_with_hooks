@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useCallback } from "react";
 import "./TopArtists.scss";
 import { token } from "../../spotify/spotify";
 import Spotify from "spotify-web-api-js";
@@ -13,20 +13,22 @@ const TopArtists = () => {
 
   const [state, dispatch] = useContext(Context);
 
+  const fetchTopArtists = useCallback(
+    async (range) => {
+      dispatch({ type: "LOADING", payload: true });
+      const res = await spotifyWebApi.getMyTopArtists({
+        time_range: `${range}`,
+      });
+      dispatch({ type: "RANGE", payload: range });
+      dispatch({ type: "TOP_ARTISTS", payload: res });
+      dispatch({ type: "LOADING", payload: false });
+    },
+    [dispatch]
+  );
+
   useEffect(() => {
     fetchTopArtists("long_term");
-  }, []);
-
-  const fetchTopArtists = async (range) => {
-    // console.log(range);
-    dispatch({ type: "LOADING", payload: true });
-    const res = await spotifyWebApi.getMyTopArtists({
-      time_range: `${range}`,
-    });
-    dispatch({ type: "RANGE", payload: range });
-    dispatch({ type: "TOP_ARTISTS", payload: res });
-    dispatch({ type: "LOADING", payload: false });
-  };
+  }, [fetchTopArtists]);
 
   const handleClick = (range) => {
     fetchTopArtists(range);
@@ -83,6 +85,7 @@ const TopArtists = () => {
                         <img
                           className="topartists-image"
                           src={item.images[0].url}
+                          alt="topartists"
                         />
                       </Link>
                       <div className="topartists-name">{item.name}</div>

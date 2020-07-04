@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useCallback } from "react";
 import "./TopTracks.scss";
 import { token } from "../../spotify/spotify";
 import Spotify from "spotify-web-api-js";
@@ -13,21 +13,24 @@ const TopTracks = () => {
 
   const [state, dispatch] = useContext(Context);
 
+  const fetchTopTracks = useCallback(
+    async (range) => {
+      // console.log(range);
+      dispatch({ type: "LOADING", payload: true });
+      const res = await spotifyWebApi.getMyTopTracks({
+        time_range: `${range}`,
+      });
+
+      dispatch({ type: "RANGE", payload: range });
+      dispatch({ type: "TOP_TRACKS", payload: res });
+      dispatch({ type: "LOADING", payload: false });
+    },
+    [dispatch]
+  );
+
   useEffect(() => {
     fetchTopTracks("long_term");
-  }, []);
-
-  const fetchTopTracks = async (range) => {
-    // console.log(range);
-    dispatch({ type: "LOADING", payload: true });
-    const res = await spotifyWebApi.getMyTopTracks({
-      time_range: `${range}`,
-    });
-
-    dispatch({ type: "RANGE", payload: range });
-    dispatch({ type: "TOP_TRACKS", payload: res });
-    dispatch({ type: "LOADING", payload: false });
-  };
+  }, [fetchTopTracks]);
 
   const handleClick = (range) => {
     fetchTopTracks(range);

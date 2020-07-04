@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useCallback } from "react";
 import { useParams } from "react-router-dom";
 import { token } from "../../spotify/spotify";
 import Spotify from "spotify-web-api-js";
@@ -17,7 +17,7 @@ const Playlist = () => {
 
   const params = new useParams();
 
-  async function fetchPlaylistTracks() {
+  const fetchPlaylistTracks = useCallback(async () => {
     dispatch({ type: "LOADING", payload: true });
     const res = await spotifyWebApi.getPlaylistTracks(params.playlistId);
     const res2 = await spotifyWebApi.getPlaylist(params.playlistId);
@@ -25,8 +25,9 @@ const Playlist = () => {
     dispatch({ type: "PLAYLIST_TRACKS", payload: res });
     dispatch({ type: "PLAYLIST", payload: res2 });
     dispatch({ type: "LOADING", payload: false });
-  }
-  async function fetchRecommendations() {
+  }, [dispatch, params.playlistId]);
+
+  const fetchRecommendations = useCallback(async () => {
     dispatch({ type: "LOADING", payload: true });
     const res = await spotifyWebApi.getPlaylistTracks(params.playlistId);
 
@@ -85,12 +86,12 @@ const Playlist = () => {
 
     dispatch({ type: "PLAYLIST_CHART", payload: arr });
     dispatch({ type: "LOADING", payload: false });
-  }
+  }, [dispatch, params.playlistId]);
 
   useEffect(() => {
     fetchPlaylistTracks();
     fetchRecommendations();
-  }, []);
+  }, [fetchPlaylistTracks, fetchRecommendations]);
 
   return (
     <div className="innerplaylist-container">

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useCallback } from "react";
 import Spotify from "spotify-web-api-js";
 import { token } from "../../spotify/spotify";
 import { Context } from "../../store/store";
@@ -7,31 +7,32 @@ import Spinner from "../Spinner/Spinner";
 import "./Profile.scss";
 
 const spotifyWebApi = new Spotify();
+const headers = {
+  Authorization: `Bearer ${token}`,
+  "Content-Type": "application/json",
+};
 const Profile = () => {
   spotifyWebApi.setAccessToken(token);
   const [state, dispatch] = useContext(Context);
-  const headers = {
-    Authorization: `Bearer ${token}`,
-    "Content-Type": "application/json",
-  };
-  const fetchUser = async () => {
+
+  const fetchUser = useCallback(async () => {
     dispatch({ type: "LOADING", payload: true });
     const res = await axios.get("https://api.spotify.com/v1/me", { headers });
 
     dispatch({ type: "USER", payload: res.data });
 
     dispatch({ type: "LOADING", payload: false });
-  };
+  }, [dispatch]);
 
-  const fetchUserPlaylist = async () => {
+  const fetchUserPlaylist = useCallback(async () => {
     dispatch({ type: "LOADING", payload: true });
     const res = await spotifyWebApi.getUserPlaylists();
 
     dispatch({ type: "USER_PLAYLIST", payload: res });
     dispatch({ type: "LOADING", payload: false });
-  };
+  }, [dispatch]);
 
-  const fetchFollowedArtists = async () => {
+  const fetchFollowedArtists = useCallback(async () => {
     //
     dispatch({ type: "LOADING", payload: true });
 
@@ -39,14 +40,14 @@ const Profile = () => {
 
     dispatch({ type: "FOLLOWED_ARTISTS", payload: res });
     dispatch({ type: "LOADING", payload: false });
-  };
+  }, [dispatch]);
 
   useEffect(() => {
     fetchUser();
     fetchUserPlaylist();
 
     fetchFollowedArtists();
-  }, []);
+  }, [fetchUser, fetchUserPlaylist, fetchFollowedArtists]);
 
   return (
     <div className="profile-container">
@@ -61,6 +62,7 @@ const Profile = () => {
                   <img
                     className="profile-image"
                     src={state.user.images[0].url}
+                    alt="profile"
                   />
                 </div>
                 <div className="profile-name">

@@ -1,19 +1,17 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useCallback } from "react";
 import "./Playlists.scss";
 import { token } from "../../spotify/spotify";
 import Spotify from "spotify-web-api-js";
 import { Context } from "../../store/store";
 import { Link } from "react-router-dom";
 import Spinner from "../Spinner/Spinner";
-
+const spotifyWebApi = new Spotify();
 const TopPlaylists = () => {
-  const spotifyWebApi = new Spotify();
-
   spotifyWebApi.setAccessToken(token);
 
   const [state, dispatch] = useContext(Context);
 
-  async function fetchPlaylists() {
+  const fetchPlaylists = useCallback(async () => {
     dispatch({ type: "LOADING", payload: true });
     const res = await spotifyWebApi.getUserPlaylists();
 
@@ -21,11 +19,11 @@ const TopPlaylists = () => {
 
     dispatch({ type: "USER_PLAYLIST", payload: res });
     dispatch({ type: "LOADING", payload: false });
-  }
+  }, [dispatch]);
 
   useEffect(() => {
     fetchPlaylists("long_term");
-  }, []);
+  }, [fetchPlaylists]);
 
   // console.log(state.userPlaylists);
 
@@ -59,6 +57,7 @@ const TopPlaylists = () => {
                         <img
                           className="playlist-image"
                           src={item.images[0].url}
+                          alt="playlist"
                         />
                         <div className="playlist-name">{item.name}</div>
                         <div className="playlist-total-tracks">

@@ -9,7 +9,7 @@ const App = () => {
 
   useEffect(() => {
     dispatch({ type: "TOKEN", payload: token });
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className="app-container"> {state.token ? <Home /> : <Login />} </div>

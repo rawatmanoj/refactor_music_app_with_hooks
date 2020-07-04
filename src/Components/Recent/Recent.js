@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useCallback } from "react";
 import "./Recent.scss";
 import { token } from "../../spotify/spotify";
 import Spotify from "spotify-web-api-js";
@@ -13,7 +13,7 @@ const Recent = () => {
 
   const [state, dispatch] = useContext(Context);
 
-  const fetchTopTracks = async () => {
+  const fetchTopTracks = useCallback(async () => {
     // console.log(range);
     dispatch({ type: "LOADING", payload: true });
 
@@ -21,11 +21,11 @@ const Recent = () => {
 
     dispatch({ type: "RECENT", payload: res });
     dispatch({ type: "LOADING", payload: false });
-  };
+  }, [dispatch]);
 
   useEffect(() => {
     fetchTopTracks();
-  }, []);
+  }, [fetchTopTracks]);
   //console.log(state);
 
   return (

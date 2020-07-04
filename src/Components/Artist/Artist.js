@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useCallback } from "react";
 import { useParams } from "react-router-dom";
 import { token } from "../../spotify/spotify";
 import Spotify from "spotify-web-api-js";
@@ -17,25 +17,26 @@ const Artist = () => {
 
   // console.log(params.artistId);
 
-  async function fetchArtist() {
+  const fetchArtist = useCallback(async () => {
     dispatch({ type: "LOADING", payload: true });
     const res = await spotifyWebApi.getArtist(params.artistId);
 
     dispatch({ type: "ARTIST", payload: res });
     dispatch({ type: "LOADING", payload: false });
-  }
+  }, [params.artistId, dispatch]);
 
-  async function fetchIsFollowing() {
+  const fetchIsFollowing = useCallback(async () => {
     const res = await spotifyWebApi.isFollowingArtists([params.artistId]);
     dispatch({ type: "IS_FOLLOWING_ARTIST", payload: res });
-  }
+  }, [params.artistId, dispatch]);
 
   useEffect(() => {
     fetchArtist();
     fetchIsFollowing();
-  }, []);
+  }, [fetchArtist, fetchIsFollowing]);
 
   const handleClick = async (status) => {
+    console.log("yes");
     if (status === "unfollow") {
       await spotifyWebApi.unfollowArtists([params.artistId]);
       fetchIsFollowing();
@@ -58,6 +59,7 @@ const Artist = () => {
                 <img
                   className="artist-image"
                   src={state.artist.images[0].url}
+                  alt="artist"
                 />
               </div>
               <div className="artist-name">{state.artist.name}</div>
@@ -69,8 +71,12 @@ const Artist = () => {
                   <div className="artist-info-heading">Followers</div>
                 </div>
                 <div className="artist-genres-container">
-                  {state.artist.genres.map((genre) => {
-                    return <div className="artist-info-box">{genre}</div>;
+                  {state.artist.genres.map((genre, i) => {
+                    return (
+                      <div key={i} className="artist-info-box">
+                        {genre}
+                      </div>
+                    );
                   })}
                   <div className="artist-info-heading">Genres</div>
                   {state.isFollowingArtist ? (

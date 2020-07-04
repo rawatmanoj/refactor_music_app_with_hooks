@@ -26,6 +26,7 @@ const Recommendations = () => {
                       <img
                         className="recommendations-image"
                         src={item.album.images[0].url}
+                        alt="album"
                       />
                     </div>
                     <div className="recommendations-info">

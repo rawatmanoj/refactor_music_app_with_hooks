@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useCallback } from "react";
 import { useParams } from "react-router-dom";
 import { token } from "../../spotify/spotify";
 import Spotify from "spotify-web-api-js";
@@ -17,15 +17,15 @@ const Track = () => {
 
   const params = new useParams();
 
-  async function fetchTrack() {
+  const fetchTrack = useCallback(async () => {
     dispatch({ type: "LOADING", payload: true });
 
     const res = await spotifyWebApi.getTrack(params.trackId);
     //console.log(res);
     dispatch({ type: "TRACK", payload: res });
-  }
+  }, [dispatch, params.trackId]);
 
-  async function fetchAudioFeatures() {
+  const fetchAudioFeatures = useCallback(async () => {
     const res = await spotifyWebApi.getAudioAnalysisForTrack(params.trackId);
     const res2 = await spotifyWebApi.getAudioFeaturesForTrack(params.trackId);
     //  console.log(res);
@@ -33,13 +33,13 @@ const Track = () => {
     dispatch({ type: "AUDIOANALYSIS", payload: res });
     dispatch({ type: "AUDIOFEATURES", payload: res2 });
     dispatch({ type: "LOADING", payload: false });
-  }
+  }, [dispatch, params.trackId]);
 
   useEffect(() => {
     fetchTrack();
     fetchAudioFeatures();
-  }, []);
-  console.log(state);
+  }, [fetchTrack, fetchAudioFeatures]);
+  // console.log(state);
   return (
     <div className="track-container">
       {state.isLoading ? (
@@ -54,6 +54,7 @@ const Track = () => {
                   <img
                     className="track-image"
                     src={state.track.album.images[0].url}
+                    alt="album"
                   />
                 </div>
                 <div className="track-info">
